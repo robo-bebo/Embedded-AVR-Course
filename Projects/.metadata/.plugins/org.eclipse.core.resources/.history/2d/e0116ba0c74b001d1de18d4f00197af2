@@ -1,0 +1,26 @@
+#include"STD_TYPES.h"
+#include"BIT_MATH.h"
+#include"DIO_registers.h"
+#include"DIO_interface.h"
+#include"util/delay.h"
+
+void main()
+{
+	u8 Button;
+	MDIO_u8SetPinDirection(PORTA,PIN0,INPUT);
+	MDIO_u8SetPinDirection(PORTA,PIN1,OUTPUT);
+
+	MDIO_u8SetPortValue(PORTA,PIN0,HIGH);
+
+	while(1)
+	{
+		MDIO_u8GetPinValue(PORTA,PIN0,&Button);
+		if(Button == 0)
+		{
+			MDIO_u8SetPortValue(PORTA,PIN1,HIGH);
+		}
+	}
+
+}
+
+
