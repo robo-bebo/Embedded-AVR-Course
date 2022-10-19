@@ -55,6 +55,7 @@ u8 MDIO_u8SetPortValue(u8 Copy_u8Port, u8 Copy_u8Value);						//Sets the value o
 
 
 u8 MDIO_u8GetPinValue(u8 Copy_u8Port, u8 Copy_u8Pin, u8* ptr_u8Value);			//Gets the value of a single pin
+u8 MDIO_u8GetPortValue(u8 Copy_u8Port, u8* ptr_u8Value);						//Gets the value of the whole port
 
 
 
