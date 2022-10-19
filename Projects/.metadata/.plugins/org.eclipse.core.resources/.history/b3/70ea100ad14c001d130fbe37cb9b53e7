@@ -1,0 +1,24 @@
+
+#include "STD_TYPES.h"
+#include "BIT_MATH.h"
+#include "DIO_interface.h"
+#include "SS_interface.h"
+
+
+void main()
+{
+	SS Seven1;
+
+	Seven1.Port(PORTA);
+	Seven1.ComType(CATHODE);
+	Seven1.EnablePin(PIN0);
+	Seven1.EnablePort(PORTC);
+
+	HSS_voidSetNumber(&Seven1,5);
+	HSS_voidEnable(Seven1);
+	while(1)
+	{
+
+	}
+
+}

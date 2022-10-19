@@ -1,0 +1,41 @@
+19:50:59 **** Incremental Build of configuration Debug for project CLCD_driver ****
+make all 
+Building file: ../main.c
+Invoking: AVR Compiler
+avr-gcc -Wall -g2 -gstabs -O0 -fpack-struct -fshort-enums -ffunction-sections -fdata-sections -std=gnu99 -funsigned-char -funsigned-bitfields -mmcu=atmega32 -DF_CPU=8000000UL -MMD -MP -MF"main.d" -MT"main.o" -c -o "main.o" "../main.c"
+In file included from ../main.c:4:
+d:/imt course content/00-tools/03-imt sdk/03- imt sdk/03- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winavr/lib/gcc/../../avr/include/util/delay.h:90:3: warning: #warning "Compiler optimizations disabled; functions from <util/delay.h> won't work as designed"
+../main.c:8: warning: return type of 'main' is not 'int'
+Finished building: ../main.c
+ 
+Building target: CLCD_driver.elf
+Invoking: AVR C Linker
+avr-gcc -Wl,-Map,CLCD_driver.map -mmcu=atmega32 -o "CLCD_driver.elf"  ./CLCD_program.o ./DIO_program.o ./main.o   
+Finished building target: CLCD_driver.elf
+ 
+Invoking: AVR Create Extended Listing
+avr-objdump -h -S CLCD_driver.elf  >"CLCD_driver.lss"
+Finished building: CLCD_driver.lss
+ 
+Create Flash image (ihex format)
+avr-objcopy -R .eeprom -R .fuse -R .lock -R .signature -O ihex CLCD_driver.elf  "CLCD_driver.hex"
+Finished building: CLCD_driver.hex
+ 
+Invoking: Print Size
+avr-size --format=avr --mcu=atmega32 CLCD_driver.elf
+AVR Memory Usage
+----------------
+Device: atmega32
+
+Program:    5900 bytes (18.0% Full)
+(.text + .data + .bootloader)
+
+Data:         16 bytes (0.8% Full)
+(.data + .bss + .noinit)
+
+
+Finished building: sizedummy
+ 
+
+19:51:00 Build Finished (took 688ms)
+
