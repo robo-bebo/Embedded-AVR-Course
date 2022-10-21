@@ -7,17 +7,16 @@
 
 void main(void)
 {
+
+	u8 ball[8] = {0b00000000,0b00000000,0b00000100,0b00001110,0b00001110,0b00001110,0b00000100,0b00000000};
+	u8 bat[8] = {0b00000000,0b00001110,0b00001110,0b00001110,0b00000100,0b00000100,0b00000100,0b00000000};
+
 	HCLCD_voidInit();
-	HCLCD_voidSendString((u8*)"ABANOUB");
-	HCLCD_voidGoTo(CLCD_CURSOR_1ST_LINE,35);
-	HCLCD_voidSendData('F');
-	HCLCD_voidSendCommand(CLCD_SHIFT_DISPLAY_RIGHT);
-	HCLCD_voidSendCommand(CLCD_SHIFT_CURSOR_RIGHT);
+	HCLCD_voidWriteSpecialCharacter(ball,CLCD_PATTERN_0,CLCD_CURSOR_1ST_LINE,0);
 	_delay_ms(1000);
-	HCLCD_voidSendCommand(CLCD_TWO_lines_5x7_8Pins);
+	HCLCD_voidWriteSpecialCharacter(bat,CLCD_PATTERN_0,CLCD_CURSOR_1ST_LINE,1);
 	while(1)
 	{
-		MDIO
 	}
 
 }

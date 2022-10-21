@@ -1,0 +1,22 @@
+
+#include "STD_TYPES.h"
+
+#include"util/delay.h"
+#include "DIO_interface.h"
+#include "CLCD_interface.h"
+
+void main(void)
+{
+
+	u8 ball[8] = {0b00000000,0b00000000,0b00000100,0b00001110,0b00001110,0b00001110,0b00000100,0b00000000};
+	u8 bat[8] = {0b00000000,0b00001110,0b00001110,0b00001110,0b00000100,0b00000100,0b00000100,0b00000000};
+
+	HCLCD_voidInit();
+	HCLCD_voidWriteSpecialCharacter(ball,CLCD_PATTERN_0,CLCD_CURSOR_1ST_LINE,0);
+	HCLCD_voidWriteSpecialCharacter(ba,CLCD_PATTERN_1,CLCD_CURSOR_1ST_LINE,1);
+	while(1)
+	{
+	}
+
+}
+

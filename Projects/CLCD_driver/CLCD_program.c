@@ -88,10 +88,11 @@ void HCLCD_voidGoTo(u8 copy_u8Line,u8 copy_u8Column)
 {
 		u8 address;
 
-		/*set the address required*/
+		/*set the DDRAM address required*/
 		address = copy_u8Line + copy_u8Column;
 
-		HCLCD_voidSendCommand(address);
+		/*(1<<7) is to define that this address is for DDRAM*/
+		HCLCD_voidSendCommand(address|(1<<7));
 }
 
 void HCLCD_voidSendString(u8* ptr_u8Str)
@@ -102,4 +103,29 @@ void HCLCD_voidSendString(u8* ptr_u8Str)
 		HCLCD_voidSendData(ptr_u8Str[i]);
 		i++;
 	}
+}
+
+
+void HCLCD_voidWriteSpecialCharacter(const u8* arr_u8Pattern,u8 copy_u8PatternNumber, u8 copy_u8Line,u8 copy_u8Column)
+{
+	u8 address;
+
+	/*set the CGRAM address required*/
+	address = copy_u8PatternNumber*8;
+
+	/*(1<<6) is to define that this address is for CGRAM*/
+	HCLCD_voidSendCommand(address|(1<<6));
+
+	/*write the pattern in the CGRAM*/
+	for(int i=0; i<8; i++)
+	{
+		HCLCD_voidSendData(arr_u8Pattern[i]);
+	}
+
+	/*set DDRAM address for display location*/
+	HCLCD_voidGoTo(copy_u8Line, copy_u8Column);
+
+	/*display the pattern*/
+	HCLCD_voidSendData(copy_u8PatternNumber);
+
 }
