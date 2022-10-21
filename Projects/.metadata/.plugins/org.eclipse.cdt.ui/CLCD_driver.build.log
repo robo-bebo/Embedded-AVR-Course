@@ -1,4 +1,4 @@
-17:15:18 **** Incremental Build of configuration Debug for project CLCD_driver ****
+17:51:25 **** Incremental Build of configuration Debug for project CLCD_driver ****
 make all 
 Building file: ../main.c
 Invoking: AVR Compiler
@@ -27,15 +27,15 @@ AVR Memory Usage
 ----------------
 Device: atmega32
 
-Program:    6162 bytes (18.8% Full)
+Program:    5756 bytes (17.6% Full)
 (.text + .data + .bootloader)
 
-Data:         24 bytes (1.2% Full)
+Data:          8 bytes (0.4% Full)
 (.data + .bss + .noinit)
 
 
 Finished building: sizedummy
  
 
-17:15:18 Build Finished (took 663ms)
+17:51:25 Build Finished (took 646ms)
 
