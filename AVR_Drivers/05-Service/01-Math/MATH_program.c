@@ -11,7 +11,6 @@
 
 #include"STD_TYPES.h"
 #include"MATH_interface.h"
-#include<stdio.h>
 
 /*takes a number in ASCII format and returns its decimal value*/
 u8 SMATH_u8AsciiToDec(u8 copy_u8AsciiNumber)

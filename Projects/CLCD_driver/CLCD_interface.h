@@ -58,7 +58,6 @@ column numbers are from 0 to 39*/
 void HCLCD_voidGoTo(u8 copy_u8Line,u8 copy_u8Column);
 
 
-
 /*Pattern number options:
 	1-CLCD_PATTERN_0
 	2-CLCD_PATTERN_1

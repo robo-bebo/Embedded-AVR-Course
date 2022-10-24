@@ -6,16 +6,19 @@
 C_SRCS += \
 ../CLCD_program.c \
 ../DIO_program.c \
+../MATH_program.c \
 ../main.c 
 
 OBJS += \
 ./CLCD_program.o \
 ./DIO_program.o \
+./MATH_program.o \
 ./main.o 
 
 C_DEPS += \
 ./CLCD_program.d \
 ./DIO_program.d \
+./MATH_program.d \
 ./main.d 
 
 

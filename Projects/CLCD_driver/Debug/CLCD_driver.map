@@ -1,5 +1,9 @@
 Archive member included because of file (symbol)
 
+d:/imt course content/00-tools/03-imt sdk/03- imt sdk/03- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_mulsi3.o)
+                              ./MATH_program.o (__mulsi3)
+d:/imt course content/00-tools/03-imt sdk/03- imt sdk/03- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodsi4.o)
+                              ./MATH_program.o (__udivmodsi4)
 d:/imt course content/00-tools/03-imt sdk/03- imt sdk/03- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
                               d:/imt course content/00-tools/03-imt sdk/03- imt sdk/03- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o (exit)
 d:/imt course content/00-tools/03-imt sdk/03- imt sdk/03- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_fixunssfsi.o)
@@ -47,6 +51,7 @@ Linker script and memory map
 LOAD d:/imt course content/00-tools/03-imt sdk/03- imt sdk/03- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
 LOAD ./CLCD_program.o
 LOAD ./DIO_program.o
+LOAD ./MATH_program.o
 LOAD ./main.o
 LOAD d:/imt course content/00-tools/03-imt sdk/03- imt sdk/03- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
 LOAD d:/imt course content/00-tools/03-imt sdk/03- imt sdk/03- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libc.a
@@ -142,7 +147,7 @@ LOAD d:/imt course content/00-tools/03-imt sdk/03- imt sdk/03- imt sdk/imt_sdk_w
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000     0x1674
+.text           0x00000000     0x19cc
  *(.vectors)
  .vectors       0x00000000       0x54 d:/imt course content/00-tools/03-imt sdk/03- imt sdk/03- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
                 0x00000000                __vectors
@@ -219,7 +224,10 @@ LOAD d:/imt course content/00-tools/03-imt sdk/03- imt sdk/03- imt sdk/imt_sdk_w
                 0x0000007e                __vector_20
  .text          0x00000082        0x0 ./CLCD_program.o
  .text          0x00000082        0x0 ./DIO_program.o
+ .text          0x00000082        0x0 ./MATH_program.o
  .text          0x00000082        0x0 ./main.o
+ .text          0x00000082        0x0 d:/imt course content/00-tools/03-imt sdk/03- imt sdk/03- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_mulsi3.o)
+ .text          0x00000082        0x0 d:/imt course content/00-tools/03-imt sdk/03- imt sdk/03- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodsi4.o)
  .text          0x00000082        0x0 d:/imt course content/00-tools/03-imt sdk/03- imt sdk/03- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
  .text          0x00000082       0x58 d:/imt course content/00-tools/03-imt sdk/03- imt sdk/03- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_fixunssfsi.o)
                 0x00000082                __fixunssfsi
@@ -284,19 +292,38 @@ LOAD d:/imt course content/00-tools/03-imt sdk/03- imt sdk/03- imt sdk/imt_sdk_w
  .text.MDIO_u8GetPortValue
                 0x00001546       0xa8 ./DIO_program.o
                 0x00001546                MDIO_u8GetPortValue
- .text.main     0x000015ee       0x14 ./main.o
-                0x000015ee                main
- .text.libgcc   0x00001602        0x0 d:/imt course content/00-tools/03-imt sdk/03- imt sdk/03- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
- .text.libgcc   0x00001602       0x38 d:/imt course content/00-tools/03-imt sdk/03- imt sdk/03- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_prologue.o)
-                0x00001602                __prologue_saves__
- .text.libgcc   0x0000163a       0x36 d:/imt course content/00-tools/03-imt sdk/03- imt sdk/03- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_epilogue.o)
-                0x0000163a                __epilogue_restores__
- .text.libgcc   0x00001670        0x0 d:/imt course content/00-tools/03-imt sdk/03- imt sdk/03- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
-                0x00001670                . = ALIGN (0x2)
+ .text.SMATH_u8AsciiToDec
+                0x000015ee       0x18 ./MATH_program.o
+                0x000015ee                SMATH_u8AsciiToDec
+ .text.SMATH_u8DecToAscii
+                0x00001606       0x18 ./MATH_program.o
+                0x00001606                SMATH_u8DecToAscii
+ .text.SMATH_voidDecToStr
+                0x0000161e      0x116 ./MATH_program.o
+                0x0000161e                SMATH_voidDecToStr
+ .text.SMATH_u32StrToDec
+                0x00001734       0xaa ./MATH_program.o
+                0x00001734                SMATH_u32StrToDec
+ .text.SMATH_u32Pow
+                0x000017de       0xb0 ./MATH_program.o
+                0x000017de                SMATH_u32Pow
+ .text.main     0x0000188e       0x4a ./main.o
+                0x0000188e                main
+ .text.libgcc   0x000018d8       0x3e d:/imt course content/00-tools/03-imt sdk/03- imt sdk/03- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_mulsi3.o)
+                0x000018d8                __mulsi3
+ .text.libgcc   0x00001916       0x44 d:/imt course content/00-tools/03-imt sdk/03- imt sdk/03- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodsi4.o)
+                0x00001916                __udivmodsi4
+ .text.libgcc   0x0000195a        0x0 d:/imt course content/00-tools/03-imt sdk/03- imt sdk/03- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .text.libgcc   0x0000195a       0x38 d:/imt course content/00-tools/03-imt sdk/03- imt sdk/03- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_prologue.o)
+                0x0000195a                __prologue_saves__
+ .text.libgcc   0x00001992       0x36 d:/imt course content/00-tools/03-imt sdk/03- imt sdk/03- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_epilogue.o)
+                0x00001992                __epilogue_restores__
+ .text.libgcc   0x000019c8        0x0 d:/imt course content/00-tools/03-imt sdk/03- imt sdk/03- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
+                0x000019c8                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00001670        0x0 d:/imt course content/00-tools/03-imt sdk/03- imt sdk/03- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
-                0x00001670                exit
-                0x00001670                _exit
+ .fini9         0x000019c8        0x0 d:/imt course content/00-tools/03-imt sdk/03- imt sdk/03- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+                0x000019c8                exit
+                0x000019c8                _exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -315,17 +342,20 @@ LOAD d:/imt course content/00-tools/03-imt sdk/03- imt sdk/03- imt sdk/imt_sdk_w
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00001670        0x4 d:/imt course content/00-tools/03-imt sdk/03- imt sdk/03- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .fini0         0x000019c8        0x4 d:/imt course content/00-tools/03-imt sdk/03- imt sdk/03- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x00001674                _etext = .
+                0x000019cc                _etext = .
 
-.data           0x00800060        0x8 load address 0x00001674
+.data           0x00800060        0x8 load address 0x000019cc
                 0x00800060                PROVIDE (__data_start, .)
  *(.data)
  .data          0x00800060        0x0 d:/imt course content/00-tools/03-imt sdk/03- imt sdk/03- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
  .data          0x00800060        0x0 ./CLCD_program.o
  .data          0x00800060        0x0 ./DIO_program.o
+ .data          0x00800060        0x0 ./MATH_program.o
  .data          0x00800060        0x0 ./main.o
+ .data          0x00800060        0x0 d:/imt course content/00-tools/03-imt sdk/03- imt sdk/03- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_mulsi3.o)
+ .data          0x00800060        0x0 d:/imt course content/00-tools/03-imt sdk/03- imt sdk/03- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodsi4.o)
  .data          0x00800060        0x0 d:/imt course content/00-tools/03-imt sdk/03- imt sdk/03- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
  .data          0x00800060        0x0 d:/imt course content/00-tools/03-imt sdk/03- imt sdk/03- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_fixunssfsi.o)
  .data          0x00800060        0x0 d:/imt course content/00-tools/03-imt sdk/03- imt sdk/03- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_addsub_sf.o)
@@ -356,7 +386,10 @@ LOAD d:/imt course content/00-tools/03-imt sdk/03- imt sdk/03- imt sdk/imt_sdk_w
  .bss           0x00800068        0x0 d:/imt course content/00-tools/03-imt sdk/03- imt sdk/03- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm32.o
  .bss           0x00800068        0x0 ./CLCD_program.o
  .bss           0x00800068        0x0 ./DIO_program.o
+ .bss           0x00800068        0x0 ./MATH_program.o
  .bss           0x00800068        0x0 ./main.o
+ .bss           0x00800068        0x0 d:/imt course content/00-tools/03-imt sdk/03- imt sdk/03- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_mulsi3.o)
+ .bss           0x00800068        0x0 d:/imt course content/00-tools/03-imt sdk/03- imt sdk/03- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodsi4.o)
  .bss           0x00800068        0x0 d:/imt course content/00-tools/03-imt sdk/03- imt sdk/03- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
  .bss           0x00800068        0x0 d:/imt course content/00-tools/03-imt sdk/03- imt sdk/03- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_fixunssfsi.o)
  .bss           0x00800068        0x0 d:/imt course content/00-tools/03-imt sdk/03- imt sdk/03- imt sdk/imt_sdk_win_64/imt_sdk_win_64/winavr/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_addsub_sf.o)
@@ -375,8 +408,8 @@ LOAD d:/imt course content/00-tools/03-imt sdk/03- imt sdk/03- imt sdk/imt_sdk_w
  *(.bss*)
  *(COMMON)
                 0x00800068                PROVIDE (__bss_end, .)
-                0x00001674                __data_load_start = LOADADDR (.data)
-                0x0000167c                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x000019cc                __data_load_start = LOADADDR (.data)
+                0x000019d4                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x00800068        0x0
                 0x00800068                PROVIDE (__noinit_start, .)
@@ -401,17 +434,19 @@ LOAD d:/imt course content/00-tools/03-imt sdk/03- imt sdk/03- imt sdk/imt_sdk_w
 .signature
  *(.signature*)
 
-.stab           0x00000000      0xe10
+.stab           0x00000000     0x1224
  *(.stab)
  .stab          0x00000000      0x870 ./CLCD_program.o
  .stab          0x00000870      0x468 ./DIO_program.o
                                 0x4e0 (size before relaxing)
- .stab          0x00000cd8      0x138 ./main.o
-                                0x33c (size before relaxing)
+ .stab          0x00000cd8      0x3cc ./MATH_program.o
+                                0x444 (size before relaxing)
+ .stab          0x000010a4      0x180 ./main.o
+                                0x384 (size before relaxing)
 
-.stabstr        0x00000000      0xabc
+.stabstr        0x00000000      0xc8d
  *(.stabstr)
- .stabstr       0x00000000      0xabc ./CLCD_program.o
+ .stabstr       0x00000000      0xc8d ./CLCD_program.o
 
 .stab.excl
  *(.stab.excl)

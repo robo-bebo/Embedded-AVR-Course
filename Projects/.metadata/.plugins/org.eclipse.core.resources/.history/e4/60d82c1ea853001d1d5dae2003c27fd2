@@ -1,0 +1,136 @@
+/*******************************************************************************************/
+/*******************************************************************************************/
+/*******************************	Author: Abanoub Ramsis	********************************/
+/*******************************	Layer: MCAL				********************************/
+/*******************************	AWC: EXTI				********************************/
+/*******************************	Version: 1.0			********************************/
+/*******************************************************************************************/
+/*******************************************************************************************/
+
+
+
+#include"STD_TYPES.h"
+#include"BIT_MATH.h"
+
+#include"EXTI_registers.h"
+#include"EXTI_interface.h"
+#include"DIO_interface.h"
+
+void static(*ptrINT0_ISR) (void) = NULL;
+void static(*ptrINT1_ISR) (void) = NULL;
+void static(*ptrINT2_ISR) (void) = NULL;
+
+
+void EXTI_voidInt0Initialize(u8 copy_u8Method)
+{
+	SET_BIT(GICR,GICR_INT0);
+	MDIO_u8SetPinDirection(PORTD,PIN2,PIN_INPUT);
+	switch(copy_u8Method)
+	{
+		case FALLING_EDGE:
+		SET_BIT(MCUCR,MCUCR_ISC01);
+		CLR_BIT(MCUCR,MCUCR_ISC00);
+		MDIO_u8SetPinValue(PORTD,PIN2,PIN_HIGH);
+		break;
+		
+		case RISING_EDGE:
+		SET_BIT(MCUCR,MCUCR_ISC01);
+		SET_BIT(MCUCR,MCUCR_ISC00);
+		MDIO_u8SetPinValue(PORTD,PIN2,PIN_LOW);
+		break;
+		
+		case LOW_LEVEL:
+		CLR_BIT(MCUCR,MCUCR_ISC01);
+		CLR_BIT(MCUCR,MCUCR_ISC00);
+		MDIO_u8SetPinValue(PORTD,PIN2,PIN_HIGH);
+		break;
+		
+		case LOGIC_CHANGE:
+		CLR_BIT(MCUCR,MCUCR_ISC01);
+		SET_BIT(MCUCR,MCUCR_ISC00);
+		break;
+	}
+}
+
+void EXTI_voidInt1Initialize(u8 copy_u8Method)
+{
+	SET_BIT(GICR,GICR_INT1);
+	MDIO_u8SetPinDirection(PORTD,PIN3,PIN_INPUT);
+	switch(copy_u8Method)
+	{
+		case FALLING_EDGE:
+		SET_BIT(MCUCR,MCUCR_ISC11);
+		CLR_BIT(MCUCR,MCUCR_ISC10);
+		MDIO_u8SetPinValue(PORTD,PIN3,PIN_HIGH);
+		break;
+		
+		case RISING_EDGE:
+		SET_BIT(MCUCR,MCUCR_ISC11);
+		SET_BIT(MCUCR,MCUCR_ISC10);
+		MDIO_u8SetPinValue(PORTD,PIN3,PIN_LOW);
+		break;
+		
+		case LOW_LEVEL:
+		CLR_BIT(MCUCR,MCUCR_ISC11);
+		CLR_BIT(MCUCR,MCUCR_ISC10);
+		MDIO_u8SetPinValue(PORTD,PIN3,PIN_HIGH);
+		break;
+		
+		case LOGIC_CHANGE:
+		CLR_BIT(MCUCR,MCUCR_ISC11);
+		SET_BIT(MCUCR,MCUCR_ISC10);
+		break;
+	}
+}
+
+void EXTI_voidInt2Initialize(u8 copy_u8Method)
+{
+	SET_BIT(GICR,GICR_INT2);
+	MDIO_u8SetPinDirection(PORTB,PIN2,PIN_INPUT);
+	switch(copy_u8Method)
+	{
+		case FALLING_EDGE:
+		CLR_BIT(MCUCSR,MCUCSR_ISC2);
+		MDIO_u8SetPinValue(PORTB,PIN2,PIN_HIGH);
+		break;
+		
+		case RISING_EDGE:
+		SET_BIT(MCUCSR,MCUCSR_ISC2);
+		MDIO_u8SetPinValue(PORTB,PIN2,PIN_LOW);
+		break;
+	}
+}
+
+void EXTI_voidInt0SetCallBack(void (*INT0_ISR) (void))
+{
+	ptrINT0_ISR = INT0_ISR;
+}
+
+void EXTI_voidInt1SetCallBack(void (*INT1_ISR) (void))
+{
+	ptrINT1_ISR = INT1_ISR;
+}
+
+void EXTI_voidInt2SetCallBack(void (*INT2_ISR) (void))
+{
+	ptrINT2_ISR = INT2_ISR;
+}
+
+
+
+
+
+void __vector_1 (void)
+{
+	ptrINT0_ISR();
+}
+
+void __vector_2 (void)
+{
+	ptrINT1_ISR();
+}
+
+void __vector_3 (void)
+{
+	ptrINT2_ISR();
+}

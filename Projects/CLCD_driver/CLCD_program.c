@@ -106,6 +106,7 @@ void HCLCD_voidSendString(u8* ptr_u8Str)
 }
 
 
+
 void HCLCD_voidWriteSpecialCharacter(const u8* arr_u8Pattern,u8 copy_u8PatternNumber, u8 copy_u8Line,u8 copy_u8Column)
 {
 	u8 address;
