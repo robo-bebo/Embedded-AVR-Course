@@ -25,6 +25,9 @@ u32 SMATH_u32StrToDec(u8* arr_u8Str);
 /*takes a number and a power and returns the number raised to the power*/ 
 u32 SMATH_u32Pow(u32 copy_u32Number, u32 copy_u32Power);
 
+/*takes min and max of input and maps it according to min and max of output*/
+u32 SMATH_u32Map(u32 input, u32 in_max, u32 in_min, u32 out_max, u32 out_min);
+
 
 
 #endif

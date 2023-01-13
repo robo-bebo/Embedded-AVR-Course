@@ -1,0 +1,35 @@
+
+#include "STD_TYPES.h"
+#include "DIO_interface.h"
+#include "GIE_interface.h"
+#include "ADC_interface.h"
+#include "util/delay.h"
+
+u16 TempVal =  0;
+void TurnOn(void);
+void main()
+{
+	MDIO_u8SetPinDirection(PORTC,PIN0,PIN_OUTPUT);
+	MDIO_u8SetPinValue(PORTC,PIN0,PIN_LOW);
+
+	MDIO_u8SetPortDirection(PORTB,PORT_OUTPUT);
+	MDIO_u8SetPortValue(PORTB,PORT_LOW);
+	MDIO_u8SetPinDirection(PORTA,PIN0,PIN_INPUT);
+	MADC_voidInitialize();
+
+	while(1)
+	{
+		MADC_u8ReadAsync(ADC_A0,&TempVal,&TurnOn);
+		_delay_ms(300);
+
+	}
+
+}
+
+void TurnOn(void)
+{
+	MDIO_u8SetPinValue(PORTC,PIN0,PIN_LOW);
+	MDIO_u8SetPortValue(PORTB,TempVal);
+
+}
+

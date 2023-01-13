@@ -81,3 +81,11 @@ u32 SMATH_u32Pow(u32 copy_u32Number, u32 copy_u32Power)
 	
 	return(Ans);
 }
+
+/*takes min and max of input and maps it according to min and max of output*/
+u32 SMATH_u32Map(u32 input, u32 in_max, u32 in_min, u32 out_max, u32 out_min)
+{
+	u32 result;
+	result =  ((input - in_min) * (out_max - out_min) / (in_max - in_min) + out_min);
+	return result;
+} 

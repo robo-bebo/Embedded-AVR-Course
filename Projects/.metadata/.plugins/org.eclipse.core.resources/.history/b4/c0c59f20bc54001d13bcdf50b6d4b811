@@ -1,0 +1,26 @@
+
+#include "STD_TYPES.h"
+#include "DIO_interface.h"
+#include "GIE_interface.h"
+#include "ADC_interface.h"
+
+
+void main()
+{
+
+	MDIO_u8SetPinDirection(PORTB,PIN0,PIN_OUTPUT);
+	MDIO_u8SetPinValue(PORTB,PIN0,PIN_LOW);
+
+	while(1)
+	{
+
+	}
+
+}
+
+void TurnOn(void)
+{
+	MDIO_u8SetPinValue(PORTB,PIN0,PIN_HIGH);
+
+}
+

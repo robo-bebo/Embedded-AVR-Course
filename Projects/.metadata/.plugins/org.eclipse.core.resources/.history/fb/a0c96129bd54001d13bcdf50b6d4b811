@@ -1,0 +1,68 @@
+/*******************************************************************************************/
+/*******************************************************************************************/
+/*******************************	Author: Abanoub Ramsis	********************************/
+/*******************************	Layer: MCAL				********************************/
+/*******************************	AWC: ADC				********************************/
+/*******************************	Version: 1.0			********************************/
+/*******************************************************************************************/
+/*******************************************************************************************/
+
+
+#ifndef ADC_CONFIG_H
+#define ADC_CONFIG_H
+
+
+/* reference voltage selection options:
+
+		1- AREF 
+		2- AVCC
+		3- internal_2.56V 		*/
+
+#define REF_VOLTAGE internal_2_56V
+
+
+/* Trigger mode options
+
+		1- AUTO
+		2- MANUAL		*/
+
+#define TRIGGER_MODE MANUAL
+
+
+
+/* Auto trigger source options
+		1- FREE_RUNNING
+		2-ANALOG_COMPARATOR
+		3-EXTI0
+		4-T_C0_MATCH
+		5-T_C0_OVERFLOW
+		6-T_C_MATCH_B
+		7-T_C1_OVERFLOW
+		8-T_C1_CAPTURE     */
+		
+#define TRIGGER_SOURCE FREE_RUNNING
+
+/* Prescaler division options 
+		1- _2
+		2- _4
+		3- _8
+		4- _16
+		5- _32
+		6- _64
+		7- _128  */
+
+#define PRESCALER _128
+
+/* Resolution options
+
+	1- _8_BITS
+	2- _10_BITS */
+	
+#define RESOLUTION _10_BITS
+
+/* Function type 
+	1- SYNC
+	2- ASYNC	*/
+
+#define FUNC_TYPE SYNC
+#endif

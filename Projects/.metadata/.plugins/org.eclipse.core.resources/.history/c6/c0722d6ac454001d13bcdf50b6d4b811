@@ -1,0 +1,152 @@
+/*******************************************************************************************/
+/*******************************************************************************************/
+/*******************************	Author: Abanoub Ramsis	********************************/
+/*******************************	Layer: MCAL				********************************/
+/*******************************	AWC: ADC				********************************/
+/*******************************	Version: 1.0			********************************/
+/*******************************************************************************************/
+/*******************************************************************************************/
+
+
+
+#include "STD_TYPES.h"
+#include "BIT_MATH.h"
+
+#include "ADC_private.h"
+#include "ADC_interface.h"
+#include "ADC_config.h"
+#include "ADC_registers.h"
+
+/*pointer for holding the callback function address*/
+void (*ptrADC_ISR) (void) = NULL;
+
+/*pointer for holding the ADC output when using ASYNC mode*/
+u16* Gptr_u16Output = NULL;
+
+u8 MADC_voidInitialize(void)
+{
+	/* reference voltage selection*/
+	#if REF_VOLTAGE == AREF
+	CLR_BIT(ADMUX,ADMUX_REFS1);
+	CLR_BIT(ADMUX,ADMUX_REFS0);
+	
+	#elif REF_VOLTAGE == AVCC
+	CLR_BIT(ADMUX,ADMUX_REFS1);
+	SET_BIT(ADMUX,ADMUX_REFS0);
+	
+	#elif REF_VOLTAGE == internal_2_56V
+	SET_BIT(ADMUX,ADMUX_REFS1);
+	SET_BIT(ADMUX,ADMUX_REFS0);
+	
+	#else
+		#error "invalid reference voltage option"
+	
+	#endif
+	
+	/* Resolution options */
+	#if RESOLUTION == _10_BITS
+	CLR_BIT(ADMUX,ADMUX_ADLAR);
+
+	#elif RESOLUTION == _8_BITS
+	SET_BIT(ADMUX,ADMUX_ADLAR);
+	
+	#else
+		#error "invalid Resolution option"
+	#endif
+	
+	
+	/* Trigger mode */
+	#if TRIGGER_MODE == MANUAL
+	CLR_BIT(ADCSRA,ADCSRA_ADATE);
+	
+	#elif TRIGGER_MODE == AUTO
+	SET_BIT(ADCSRA,ADCSRA_ADATE);
+	SET_BIT(ADCSRA,ADCSRA_ADIE);
+	SFIOR &= SFIOR_MASK;
+	SFIOR |= (TRIGGER_SOURCE<<5);
+	
+	#else
+		#error "invalid trigger mode option"
+	#endif
+	
+	
+	/* Prescaler */
+	ADCSRA &= PRESCALER_MASK;
+	ADCSRA |= PRESCALER;
+
+	/* enable ADC */
+	SET_BIT(ADCSRA,ADCSRA_ADEN);
+	 return 0;
+}
+
+u8 MADC_u8ReadSync(u8 copy_u8Channel,u16* ptr_u16Output)
+{
+
+	/*disable interrupt*/
+	CLR_BIT(ADCSRA,ADCSRA_ADIE);
+
+	ADMUX &= ADMUX_MASK;
+	ADMUX |= copy_u8Channel;
+	
+
+	/*Start conversion*/
+	SET_BIT(ADCSRA,ADCSRA_ADSC);
+
+	/*wait for the conversion to complete*/
+	while((GET_BIT(ADCSRA,ADCSRA_ADIF) == 0))
+	{
+	}
+	/*clear the flag*/
+	SET_BIT(ADCSRA,ADCSRA_ADIF);
+
+	#if RESOLUTION == _10_BITS
+	/*read two registers ADCL and ADCH*/
+	*ptr_u16Output = ADC;
+	
+	#elif RESOLUTION == _8_BITS
+	/*this will read ADCH and the following register*/
+	*ptr_u16Output = ADCH;
+	/*so we and with 0xFF to clear the 8 most siginficant bits*/
+	*ptr_u16Output &= 0xFF;
+	
+	#else
+		#error "invalid Resolution option"
+	#endif
+
+	return 0;
+}
+
+u8 MADC_u8ReadAsync(u8 copy_u8Channel,u16* ptr_u16Output,void (*FuncPtr) (void))
+{
+	/*enable interrupt*/
+	SET_BIT(ADCSRA,ADCSRA_ADIE);
+	ADMUX &= ADMUX_MASK;
+	ADMUX |= copy_u8Channel;
+	ptrADC_ISR = FuncPtr;
+	Gptr_u16Output = ptr_u16Output;
+	/*start conversion*/
+	SET_BIT(ADCSRA,ADCSRA_ADSC);
+	return 0;
+}
+
+
+void __vector_16 (void)
+{
+	ptrADC_ISR();
+	#if RESOLUTION == _10_BITS
+	/*read two registers ADCL and ADCH*/
+	*Gptr_u16Output = ADC;
+	
+	#elif RESOLUTION == _8_BITS
+	/*read ADCH and the following register*/
+	*Gptr_u16Output = ADCH;
+	/*And with 0xFF to clear the 8 most siginficant bits*/
+	*Gptr_u16Output &= 0xFF;
+	
+	#else
+		#error "invalid Resolution option"
+	#endif
+	
+	/*call the ISR*/
+	ptrADC_ISR();
+}
